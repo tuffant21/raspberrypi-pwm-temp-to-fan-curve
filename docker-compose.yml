@@ -1,0 +1,14 @@
+services:
+  fan-controller:
+    container_name: pi5-fan-control
+    image: pi5-fan-control:latest
+    restart: unless-stopped
+    privileged: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /sys:/sys
+      - /dev:/dev
+    devices:
+      - "/dev/pwmchip0:/dev/pwmchip0"
